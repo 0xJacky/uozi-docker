@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 debian:buster-slim
+FROM --platform=$TARGETPLATFORM debian:buster-slim
 ENV TZ=Asia/Shanghai \
     DEBIAN_FRONTEND=noninteractive
 
