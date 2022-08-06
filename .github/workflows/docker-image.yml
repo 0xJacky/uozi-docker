@@ -44,7 +44,7 @@ jobs:
       with:
         context: ./${{ env.image }}
         file: ./${{ env.image }}/Dockerfile
-        platforms: linux/amd64
+        platforms: linux/${{ env.arch }}
         push: ${{ github.event_name != 'pull_request' }}
         tags: |
             ${{ secrets.DOCKERHUB_USER }}/${{ env.image }}:latest
