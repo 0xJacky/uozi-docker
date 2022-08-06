@@ -14,11 +14,9 @@ jobs:
     
     strategy:
       matrix:
-          arch: [ amd64, arm64/v8, arm/v7, arm/v6, arm/v5 ]
           image: [ uozi-debian-base-slim, nginx-ui-base ]
           
     env:
-      arch: ${{ matrix.arch }}
       image: ${{ matrix.image }}
 
     steps:
@@ -26,7 +24,6 @@ jobs:
       name: Build the Docker image
     
     - name: Set up QEMU
-      if: env.arch != 'amd64'
       uses: docker/setup-qemu-action@v2
 
     - name: Set up Docker Buildx
@@ -44,7 +41,7 @@ jobs:
       with:
         context: ./${{ env.image }}
         file: ./${{ env.image }}/Dockerfile
-        platforms: linux/${{ env.arch }}
+        platforms: linux/amd64,linux/arm64/v8,linux/arm/v7,linux/arm/v6,linux/arm/v5
         push: ${{ github.event_name != 'pull_request' }}
         tags: |
             ${{ secrets.DOCKERHUB_USER }}/${{ env.image }}:latest
