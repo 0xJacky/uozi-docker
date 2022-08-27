@@ -1,0 +1,5 @@
+grpcio
+numpy
+opencv_contrib_python
+pyrealsense2
+grpcio-tools
