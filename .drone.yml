@@ -26,7 +26,7 @@ steps:
       image: thegeeklab/drone-docker-buildx:23
       privileged: true
       settings:
-          repo: uozi/debian-base-slim
+          repo: uozi/uozi-debian-base-slim
           tags: latest
           dockerfile: uozi-debian-base-slim/Dockerfile
           context: .
