@@ -5,6 +5,7 @@ name: uozi-debian-base-slim
 steps:
     - name: build and push to aliyun
       image: thegeeklab/drone-docker-buildx:23
+      privileged: true
       settings:
           repo: registry.cn-shenzhen.aliyuncs.com/uozi/debian-base-slim
           registry: registry.cn-shenzhen.aliyuncs.com
@@ -24,6 +25,7 @@ steps:
     - name: build and push to dockerhub
       image: thegeeklab/drone-docker-buildx:23
       depends_on: [build and push to aliyun]
+      privileged: true
       settings:
           repo: uozi/debian-base-slim
           tags: latest
