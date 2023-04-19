@@ -1,0 +1,29 @@
+kind: pipeline
+type: docker
+name: uozi-debian-base-slim
+
+steps:
+    - name: build and push to aliyun
+      image: plugins/docker
+      settings:
+          repo: registry.cn-shenzhen.aliyuncs.com/uozi/debian-base-slim
+          registry: registry.cn-shenzhen.aliyuncs.com
+          tags: latest
+          dockerfile: Dockerfile
+          context: .
+          username:
+              from_secret: aliyun_registry_username
+          password:
+              from_secret: aliyun_registry_password
+    - name: build and push to dockerhub
+      image: plugins/docker
+      depends_on: [build and push to aliyun]
+      settings:
+          repo: uozi/debian-base-slim
+          tags: latest
+          dockerfile: Dockerfile
+          context: .
+          username:
+              from_secret: docker_username
+          password:
+              from_secret: docker_password
