@@ -9,7 +9,7 @@ steps:
           repo: registry.cn-shenzhen.aliyuncs.com/uozi/debian-base-slim
           registry: registry.cn-shenzhen.aliyuncs.com
           tags: latest
-          dockerfile: Dockerfile
+          dockerfile: uozi-debian-base-slim/Dockerfile
           context: .
           username:
               from_secret: aliyun_registry_username
@@ -21,7 +21,7 @@ steps:
       settings:
           repo: uozi/debian-base-slim
           tags: latest
-          dockerfile: Dockerfile
+          dockerfile: uozi-debian-base-slim/Dockerfile
           context: .
           username:
               from_secret: docker_username
