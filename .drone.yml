@@ -84,3 +84,17 @@ steps:
             - linux/arm/v6
             - linux/arm/v7
             - linux/arm64
+
+---
+kind: pipeline
+type: docker
+name: nextcloud
+
+steps:
+    - name: build
+      image: plugins/docker
+      settings:
+          repo: nextcloud
+          tags: latest
+          dockerfile: nextcloud/Dockerfile
+          context: .
