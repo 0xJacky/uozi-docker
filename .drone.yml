@@ -92,7 +92,7 @@ name: nextcloud
 
 steps:
     - name: build and save image
-      image: docker:dind
+      image: docker
       privileged: true
       volumes:
       - name: dockersock
