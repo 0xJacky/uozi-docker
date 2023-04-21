@@ -56,7 +56,7 @@ RUN mkdir -p \
     /var/run/supervisord \
     ;
 
-COPY nextcloud/supervisord.conf /
+COPY supervisord.conf /
 
 ENV NEXTCLOUD_UPDATE=1
 
