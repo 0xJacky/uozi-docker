@@ -100,6 +100,7 @@ steps:
       commands:
         - sleep 5 # give docker enough time to start
         - docker ps -a
+        - cd nextcloud
         - docker build -t nextcloud .
 
 services:
