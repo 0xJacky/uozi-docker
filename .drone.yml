@@ -100,7 +100,7 @@ steps:
         - docker build -t nextcloud .
         - docker images
 
-    volumes:
-        - name: host_docker_sock
-        host:
-            path: /var/run/docker.sock
+volumes:
+    - name: host_docker_sock
+    host:
+        path: /var/run/docker.sock
