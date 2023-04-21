@@ -96,6 +96,9 @@ steps:
       privileged: true
       environment:
         DOCKER_HOST: unix:///var/run/host_docker.sock
+      volumes:
+        - name: host_docker_sock
+          path: /var/run
       commands:
         - docker build -t nextcloud .
         - docker images
