@@ -95,10 +95,10 @@ steps:
       image: docker:dind
       privileged: true
       environment:
-        DOCKER_HOST: unix:///var/run/host_docker.sock
+        DOCKER_HOST: unix:///docker.sock
       volumes:
         - name: host_docker_sock
-          path: /var/run/host_docker.sock
+          path: /docker.sock
       commands:
         - docker build -t nextcloud .
         - docker images
