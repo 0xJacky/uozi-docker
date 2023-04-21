@@ -91,11 +91,16 @@ type: docker
 name: nextcloud
 
 steps:
-    - name: build
-      image: plugins/docker
-      settings:
-          registry: registry.local
-          repo: nextcloud
-          tags: latest
-          dockerfile: nextcloud/Dockerfile
-          context: .
+    - name: build and save image
+    image: docker:dind
+    privileged: true
+    environment:
+        DOCKER_HOST: unix:///var/run/host_docker.sock
+    commands:
+    - docker build -t nextcloud .
+    - docker images
+
+    volumes:
+    - name: host_docker_sock
+    host:
+        path: /var/run/docker.sock
