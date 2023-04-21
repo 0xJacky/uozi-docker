@@ -94,6 +94,7 @@ steps:
     - name: build
       image: plugins/docker
       settings:
+          registry: registry.local
           repo: nextcloud
           tags: latest
           dockerfile: nextcloud/Dockerfile
