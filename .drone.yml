@@ -94,16 +94,22 @@ steps:
     - name: build and save image
       image: docker:dind
       privileged: true
-      environment:
-        DOCKER_HOST: unix:///docker.sock
       volumes:
-        - name: host_docker_sock
-          path: /docker.sock
+      - name: dockersock
+        path: /var/run
       commands:
+        - sleep 5 # give docker enough time to start
+        - docker ps -a
         - docker build -t nextcloud .
-        - docker images
+
+services:
+- name: docker
+  image: docker:dind
+  privileged: true
+  volumes:
+  - name: dockersock
+    path: /var/run
 
 volumes:
-    - name: host_docker_sock
-      host:
-        path: /var/run/docker.sock
+- name: dockersock
+  temp: {}
