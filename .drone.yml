@@ -1,103 +1,91 @@
-# kind: pipeline
-# type: docker
-# name: uozi-debian-base-slim-aliyun
+kind: pipeline
+type: docker
+name: uozi-debian-base-slim
 
-# steps:
-#     - name: build and push to aliyun
-#       image: thegeeklab/drone-docker-buildx:23
-#       privileged: true
-#       settings:
-#           repo: registry.cn-shenzhen.aliyuncs.com/uozi/debian-base-slim
-#           registry: registry.cn-shenzhen.aliyuncs.com
-#           tags: latest
-#           dockerfile: uozi-debian-base-slim/Dockerfile
-#           context: .
-#           username:
-#               from_secret: aliyun_registry_username
-#           password:
-#               from_secret: aliyun_registry_password
-#           platforms:
-#             - linux/amd64
-#             - linux/arm/v5
-#             - linux/arm/v6
-#             - linux/arm/v7
-#             - linux/arm64
-# ---
-# kind: pipeline
-# type: docker
-# name: uozi-debian-base-slim-dockerhub
+steps:
+    - name: build and push to aliyun
+      image: thegeeklab/drone-docker-buildx:23
+      privileged: true
+      settings:
+          repo: registry.cn-shenzhen.aliyuncs.com/uozi/debian-base-slim
+          registry: registry.cn-shenzhen.aliyuncs.com
+          tags: latest
+          dockerfile: uozi-debian-base-slim/Dockerfile
+          context: .
+          username:
+              from_secret: aliyun_registry_username
+          password:
+              from_secret: aliyun_registry_password
+          platforms:
+            - linux/amd64
+            - linux/arm/v5
+            - linux/arm/v6
+            - linux/arm/v7
+            - linux/arm64
+    - name: build and push to dockerhub
+      image: thegeeklab/drone-docker-buildx:23
+      privileged: true
+      settings:
+          repo: uozi/uozi-debian-base-slim
+          tags: latest
+          dockerfile: uozi-debian-base-slim/Dockerfile
+          context: .
+          username:
+              from_secret: docker_username
+          password:
+              from_secret: docker_password
+          platforms:
+            - linux/amd64
+            - linux/arm/v5
+            - linux/arm/v6
+            - linux/arm/v7
+            - linux/arm64
 
-# steps:
-#     - name: build and push to dockerhub
-#       image: thegeeklab/drone-docker-buildx:23
-#       privileged: true
-#       settings:
-#           repo: uozi/uozi-debian-base-slim
-#           tags: latest
-#           dockerfile: uozi-debian-base-slim/Dockerfile
-#           context: .
-#           username:
-#               from_secret: docker_username
-#           password:
-#               from_secret: docker_password
-#           platforms:
-#             - linux/amd64
-#             - linux/arm/v5
-#             - linux/arm/v6
-#             - linux/arm/v7
-#             - linux/arm64
+---
+kind: pipeline
+type: docker
+name: nginx-ui-base
 
-# ---
-# kind: pipeline
-# type: docker
-# name: nginx-ui-base-aliyun
+steps:
+    - name: build and push to aliyun
+      image: thegeeklab/drone-docker-buildx:23
+      privileged: true
+      settings:
+          repo: registry.cn-shenzhen.aliyuncs.com/uozi/nginx-ui-base
+          registry: registry.cn-shenzhen.aliyuncs.com
+          tags: latest
+          dockerfile: nginx-ui-base/Dockerfile
+          context: .
+          username:
+              from_secret: aliyun_registry_username
+          password:
+              from_secret: aliyun_registry_password
+          platforms:
+            - linux/amd64
+            - linux/arm/v5
+            - linux/arm/v6
+            - linux/arm/v7
+            - linux/arm64
+    - name: build and push to dockerhub
+      image: thegeeklab/drone-docker-buildx:23
+      privileged: true
+      settings:
+          repo: uozi/nginx-ui-base
+          tags: latest
+          dockerfile: nginx-ui-base/Dockerfile
+          context: .
+          username:
+              from_secret: docker_username
+          password:
+              from_secret: docker_password
+          platforms:
+            - linux/amd64
+            - linux/arm/v5
+            - linux/arm/v6
+            - linux/arm/v7
+            - linux/arm64
 
-# steps:
-#     - name: build and push to aliyun
-#       image: thegeeklab/drone-docker-buildx:23
-#       privileged: true
-#       settings:
-#           repo: registry.cn-shenzhen.aliyuncs.com/uozi/nginx-ui-base
-#           registry: registry.cn-shenzhen.aliyuncs.com
-#           tags: latest
-#           dockerfile: nginx-ui-base/Dockerfile
-#           context: .
-#           username:
-#               from_secret: aliyun_registry_username
-#           password:
-#               from_secret: aliyun_registry_password
-#           platforms:
-#             - linux/amd64
-#             - linux/arm/v5
-#             - linux/arm/v6
-#             - linux/arm/v7
-#             - linux/arm64
-# ---
-# kind: pipeline
-# type: docker
-# name: nginx-ui-base-dockerhub
-
-# steps:
-#     - name: build and push to dockerhub
-#       image: thegeeklab/drone-docker-buildx:23
-#       privileged: true
-#       settings:
-#           repo: uozi/nginx-ui-base
-#           tags: latest
-#           dockerfile: nginx-ui-base/Dockerfile
-#           context: .
-#           username:
-#               from_secret: docker_username
-#           password:
-#               from_secret: docker_password
-#           platforms:
-#             - linux/amd64
-#             - linux/arm/v5
-#             - linux/arm/v6
-#             - linux/arm/v7
-#             - linux/arm64
-
-# ---
+---
 kind: pipeline
 type: docker
 name: nextcloud
