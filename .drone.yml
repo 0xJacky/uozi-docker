@@ -108,7 +108,10 @@ steps:
         - apt-get install -y docker-ce-cli
         - docker ps -a
         - cd nextcloud
+        - docker image rm nextcloud:apache
         - docker build -t nextcloud .
+
+
 
 volumes:
 - name: dockersock
