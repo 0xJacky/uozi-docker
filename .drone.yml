@@ -108,7 +108,7 @@ steps:
         - apt-get install -y docker-ce-cli
         - docker ps -a
         - cd nextcloud
-        - docker image rm nextcloud:apache
+        - docker image inspect nextcloud:apache >/dev/null 2>&1 && docker image rm nextcloud:apache
         - docker build -t nextcloud .
 
 
