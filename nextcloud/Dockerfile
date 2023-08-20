@@ -1,4 +1,4 @@
-FROM nextcloud:apache
+FROM nextcloud:26.0.5-apache
 
 COPY sources.list /etc/apt/sources.list
 
