@@ -1,4 +1,4 @@
-FROM --platform=$TARGETPLATFORM debian:bullseye-slim
+FROM --platform=$TARGETPLATFORM debian:bookworm-slim
 ENV TZ=Asia/Shanghai \
     DEBIAN_FRONTEND=noninteractive
 
