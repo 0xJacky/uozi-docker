@@ -28,10 +28,11 @@ RUN case "${TARGETARCH}/${TARGETVARIANT}" in \
 COPY nginx-ui-base/nginx /etc/s6-overlay/s6-rc.d/nginx/run
 RUN echo 'longrun' > /etc/s6-overlay/s6-rc.d/nginx/type && touch /etc/s6-overlay/s6-rc.d/user/contents.d/nginx
 
-RUN mkdir /usr/etc \
+RUN mkdir -p /usr/local/etc \
     && mkdir /etc/nginx/sites-available \
     && mkdir /etc/nginx/sites-enabled \
-    && cp -r /etc/nginx /usr/etc/nginx \
-;
+    && mkdir /etc/nginx/streams-available \
+    && mkdir /etc/nginx/streams-enabled \
+    && cp -r /etc/nginx /usr/local/etc/nginx
 
 ENTRYPOINT ["/init"]
