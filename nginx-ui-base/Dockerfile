@@ -35,4 +35,14 @@ RUN mkdir -p /usr/local/etc \
     && mkdir /etc/nginx/streams-enabled \
     && cp -r /etc/nginx /usr/local/etc/nginx
 
+# init config
+COPY nginx-ui-base/init-config.up /etc/s6-overlay/s6-rc.d/init-config/up
+COPY nginx-ui-base/init-config.sh /etc/s6-overlay/s6-rc.d/init-config/init-config.sh
+
+RUN chmod +x /etc/s6-overlay/s6-rc.d/init-config/init-config.sh && \
+    echo 'oneshot' > /etc/s6-overlay/s6-rc.d/init-config/type && \
+    touch /etc/s6-overlay/s6-rc.d/user/contents.d/init-config && \
+    mkdir -p /etc/s6-overlay/s6-rc.d/nginx/dependencies.d && \
+    touch /etc/s6-overlay/s6-rc.d/nginx/dependencies.d/init-config
+
 ENTRYPOINT ["/init"]
