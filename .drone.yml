@@ -40,6 +40,21 @@ steps:
             - linux/arm/v6
             - linux/arm/v7
             - linux/arm64
+    
+    - name: notify
+      image: uozi/drone-bark
+      depends_on:
+        - build and push to aliyun
+        - build and push to dockerhub
+      settings:
+        server_url: https://push.jackyu.cn/
+        bark_device:
+            from_secret: bark_device
+        icon: https://dl.jackyu.cn/icon/drone.png
+        bark_group: Drone CI
+        bark_level: timeSensitive
+      when:
+        status: [ success, failure ]
 
 ---
 kind: pipeline
@@ -84,6 +99,22 @@ steps:
             - linux/arm/v6
             - linux/arm/v7
             - linux/arm64
+
+    - name: notify
+      image: uozi/drone-bark
+      depends_on:
+        - build and push to aliyun
+        - build and push to dockerhub
+      settings:
+        server_url: https://push.jackyu.cn/
+        bark_device:
+            from_secret: bark_device
+        icon: https://dl.jackyu.cn/icon/drone.png
+        bark_group: Drone CI
+        bark_level: timeSensitive
+      when:
+        status: [ success, failure ]
+
 
 # ---
 # kind: pipeline
