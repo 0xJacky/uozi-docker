@@ -25,8 +25,8 @@ RUN case "${TARGETARCH}/${TARGETVARIANT}" in \
 
 
 # register nginx service
-COPY nginx-ui-base/nginx /etc/s6-overlay/s6-rc.d/nginx/run
-RUN echo 'longrun' > /etc/s6-overlay/s6-rc.d/nginx/type && touch /etc/s6-overlay/s6-rc.d/user/contents.d/nginx
+COPY nginx-ui-base/nginx.up /etc/s6-overlay/s6-rc.d/nginx/up
+RUN echo 'oneshot' > /etc/s6-overlay/s6-rc.d/nginx/type && touch /etc/s6-overlay/s6-rc.d/user/contents.d/nginx
 
 RUN mkdir /usr/etc \
     && mkdir /etc/nginx/sites-available \
