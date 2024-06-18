@@ -1,3 +1,9 @@
-#!/bin/sh
+#!/command/with-contenv sh
+
+if [ ! -z "${TZ}" ]; then
+    echo "Timezone: ${TZ}"
+    ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime && \
+    echo "${TZ}" > /etc/timezone
+fi
 
 nginx -g "daemon off;"
