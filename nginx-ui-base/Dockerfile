@@ -7,7 +7,9 @@ ARG S6_OVERLAY_VERSION=3.1.6.2
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update -y && apt install -y --no-install-recommends wget xz-utils logrotate && rm -rf /var/lib/apt/lists/*
+RUN apt-get update -y \
+    && apt install -y --no-install-recommends wget xz-utils logrotate nginx-module-geoip \
+    && rm -rf /var/lib/apt/lists/*
 
 # s6-overlay
 RUN case "${TARGETARCH}/${TARGETVARIANT}" in \
