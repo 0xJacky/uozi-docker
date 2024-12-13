@@ -1,4 +1,4 @@
-FROM --platform=$TARGETPLATFORM nginx:latest
+FROM nginx:latest
 
 ARG TARGETOS
 ARG TARGETARCH
